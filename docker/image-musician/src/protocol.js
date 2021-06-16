@@ -1,5 +1,5 @@
 // Multicast port
-const PORT = 1291;
+const PORT = 4003;
 // Multicast address
 const HOSTNAME = "239.0.0.1";
 // Instruments
