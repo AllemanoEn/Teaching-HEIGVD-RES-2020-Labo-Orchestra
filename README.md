@@ -3,7 +3,7 @@
 ## Admin
 
 * **You can work in groups of 2 students**.
-* It is up to you if you want to fork this repo, or if you prefer to work in a private repo. However, you have to **use exactly the same directory structure for the validation procedure to work**. 
+* It is up to you if you want to fork this repo, or if you prefer to work in a private repo. However, you have to **use exactly the same directory structure for the validation procedure to work**.
 * We expect that you will have more issues and questions than with other labs (because we have a left some questions open on purpose). Please ask your questions on Telegram / Teams, so that everyone in the class can benefit from the discussion.
 
 ## Objectives
@@ -104,7 +104,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | --- | --- |
 |Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
-| | *Insert your diagram here...* |
+| | ![diagram](images\question_diagram.pdf) |
 |Question | Who is going to **send UDP datagrams** and **when**? |
 | | *Enter your response here...* |
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
