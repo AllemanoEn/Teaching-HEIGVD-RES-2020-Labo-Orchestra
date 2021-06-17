@@ -104,15 +104,15 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | --- | --- |
 |Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
-| | ![diagram](images/question_diagram.pdf) |
+| | ![diagram](images/questionDiagram.png) |
 |Question | Who is going to **send UDP datagrams** and **when**? |
-| | *Enter your response here...* |
+| | Each musicians sends **UDP datagrams** every **1 seconds** |
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
-| | *Enter your response here...* |
+| | The auditor listen to the **UDP datagrams** sends from the musicians. Each time the auditor receive a datagram, he update his list of current active musicians. |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | *Enter your response here...* |
+| | The instrument's sound and the musician's UUID |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *Enter your response here...* |
+| | To associate the sounds and the instruments we use a map (associative array). </br> **Sender side :** In the musician map, an instrument is mapped with its sound </br> **Receiver side :** In the auditor map, a sound is mapped with its instrument </br> Those will never be update, so we need to request them each time we want to send the sound associated with the instrument or find the instrument associated with a specific sound. |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -120,21 +120,21 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-| | *Enter your response here...*  |
+| | With the [`JSON.stringify()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) function |
 |Question | What is **npm**?  |
-| | *Enter your response here...*  |
+| | npm is the entire package manager for `NodeJS` (the official one)  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |
-| | *Enter your response here...*  |
+| | `npm install` install a specific package that is passed in params </br> `--save` used for adding the insalled package as a dependecy. (No more used since npm 5) |
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
-| | *Enter your response here...*  |
+| | You can search for a package on this website and simply installed it with a single command line  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
 | | *Enter your response here...*  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | *Enter your response here...*  |
+| | With the `setInterval` function that take a function as arguments  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | *Enter your response here...*  |
+| | The `dgram` package can do it with `dgram.createSocket('udp4')` to create a socket. Then we used the `send` function on the socket  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | *Enter your response here...*  |
+| | By using the global array `process.argv`  |
 
 
 ## Task 3: package the "musician" app in a Docker image
@@ -142,17 +142,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we **define and build our own Docker image**?|
-| | *Enter your response here...*  |
+| | As we do in other labs. Create a docker file with the lab specifications and execute the `docker run` command. We also used -t to specify an image name   |
 |Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?  |
-| | *Enter your response here...*  |
+| | To run a command at a start of a container, the `ENTRYPOINT` statement is used. In this lab, we used it to execute `"node", "/opt/app/app.js"` to run the `app.js` script  |
 |Question | After building our Docker image, how do we use it to **run containers**?  |
-| | *Enter your response here...*  |
+| | Simply by using the given command line `docker run -d <image_name> <instrument_name>`  |
 |Question | How do we get the list of all **running containers**?  |
-| | *Enter your response here...*  |
+| | With the command line `docker ps`  |
 |Question | How do we **stop/kill** one running container?  |
-| | *Enter your response here...*  |
+| | With the command line `docker kill <container_name>`  |
 |Question | How can we check that our running containers are effectively sending UDP datagrams?  |
-| | *Enter your response here...*  |
+| | We can use something like Wireshark or tcpdump (as it is recommended in the labo restriction)  |
 
 
 ## Task 4: implement an "auditor" Node.js application
@@ -162,13 +162,13 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
 | | *Enter your response here...*  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
-| | *Enter your response here...* |
+| | By using the `Map` constructor with any `Iterable`. For us, the array of instrument/sound definded in our lab |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
-| | *Enter your response here...* |
+| | For the manipulations, we could use : `const today = moment();` and `today.format()`; </br> For the formatting, we could use : `moment(testDate).format('MM/DD/YYYY');` |
 |Question | When and how do we **get rid of inactive players**?  |
-| | *Enter your response here...* |
+| | Inactive musicians are delete when the list of musicians is asked to the auditor. However, if a musician is inactive (the auditor did not receive anything in the last 5 seconds), it is not automatically deleted. |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
-| | *Enter your response here...* |
+| | The `net` library can do it with `createServer`. Then we used the `on` function to listen to a `connection` event |
 
 
 ## Task 5: package the "auditor" app in a Docker image
@@ -176,7 +176,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Enter your response here...* |
+| | This labo provide a `validate.sh` script to be sure that everything is working. If we want to do manual test, the **What you should be able to do at the end of the lab** section can be followed |
 
 
 ## Constraints
