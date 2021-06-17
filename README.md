@@ -128,7 +128,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
 | | You can search for a package on this website and simply installed it with a single command line  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | *Enter your response here...*  |
+| | With the `rfc4122` package. And finally by using the `v4f` function |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
 | | With the `setInterval` function that take a function as arguments  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
@@ -160,7 +160,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | ---  |
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
-| | *Enter your response here...*  |
+| | By using `addMembership` method with a given multicast groupe. In the labo we use `socketUDP.addMembership(protocol.HOSTNAME)`  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
 | | By using the `Map` constructor with any `Iterable`. For us, the array of instrument/sound definded in our lab |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
