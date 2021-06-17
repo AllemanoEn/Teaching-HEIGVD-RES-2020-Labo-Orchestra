@@ -166,7 +166,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
 | | For the manipulations, we could use : `const today = moment();` and `today.format()`; </br> For the formatting, we could use : `moment(testDate).format('MM/DD/YYYY');` |
 |Question | When and how do we **get rid of inactive players**?  |
-| | Inactive musicians are delete when the list of musicians is asked to the auditor. However, if a musician is inactive (the auditor did not receive anything in the last 5 seconds), it is not automatically deleted. |
+| | Inactive musicians are delete when the list of musicians is asked to the auditor |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
 | | The `net` library can do it with `createServer`. Then we used the `on` function to listen to a `connection` event |
 
